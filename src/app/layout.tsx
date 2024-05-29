@@ -8,6 +8,7 @@ import {
 import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
+import TopNav from "./_components/topnav";
 
 export const metadata = {
   title: "Grocery Guru",
@@ -23,7 +24,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
-        <body>{children}</body>
+        <body>
+          <TopNav />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );
