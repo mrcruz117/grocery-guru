@@ -26,13 +26,13 @@ export const recipes = createTable(
   "recipes",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
+    name: varchar("name", { length: 255 }).notNull(),
     description: varchar("description", { length: 1024 }),
 
     // userId from Clerk
     // user_x7x7x7x7x7x7x7x7x7x7x7x7x7x
     created_by: varchar("created_by", { length: 64 }),
-    private: boolean("private"),
+    private: boolean("private").default(false).notNull(),
   },
   // (example) => ({
   //   nameUnique: unique("name_unique").on(example.name),
@@ -43,7 +43,7 @@ export const ingredients = createTable(
   "ingredients",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
+    name: varchar("name", { length: 255 }).notNull(),
   },
 
   // how to add an index
@@ -54,12 +54,14 @@ export const ingredients = createTable(
 
 export const ingredientMeasureUnits = createTable("ingredient_measure_units", {
   id: serial("id").primaryKey(),
-  name: varchar("name", { length: 256 }),
+  unit: varchar("unit", { length: 255 }).notNull(),
 });
 
 export const recipeIngredients = createTable("recipe_items", {
-  recipeId: integer("recipe_id").references(() => recipes.id),
-  ingredientId: integer("ingredient_id").references(() => ingredients.id),
-  amount: integer("amount"),
-  unitType: integer("unit_type").references(() => ingredientMeasureUnits.id),
+  id: serial("id").primaryKey(),
+  recipeId: integer("recipe_id").references(() => recipes.id).notNull(),
+  ingredientId: integer("ingredient_id").references(() => ingredients.id).notNull(),
+  // make amount a float
+  amount: integer("amount").notNull(),
+  unitType: integer("unit_type").references(() => ingredientMeasureUnits.id).notNull(),
 });
