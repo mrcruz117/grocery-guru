@@ -26,7 +26,7 @@ export const recipes = createTable(
   "recipes",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 255 }).notNull(),
+    name: varchar("name", { length: 256 }).notNull(),
     description: varchar("description", { length: 1024 }),
 
     // userId from Clerk
@@ -34,9 +34,9 @@ export const recipes = createTable(
     created_by: varchar("created_by", { length: 64 }),
     private: boolean("private").default(false).notNull(),
   },
-  // (example) => ({
-  //   nameUnique: unique("name_unique").on(example.name),
-  // }),
+  (table) => ({
+    uniqueCreator: unique().on(table.created_by, table.name),
+  }),
 );
 
 export const ingredients = createTable(
@@ -54,14 +54,26 @@ export const ingredients = createTable(
 
 export const ingredientMeasureUnits = createTable("ingredient_measure_units", {
   id: serial("id").primaryKey(),
-  unit: varchar("unit", { length: 255 }).notNull(),
+  unit: varchar("unit", { length: 255 }).unique().notNull(),
 });
 
-export const recipeIngredients = createTable("recipe_items", {
-  id: serial("id").primaryKey(),
-  recipeId: integer("recipe_id").references(() => recipes.id).notNull(),
-  ingredientId: integer("ingredient_id").references(() => ingredients.id).notNull(),
-  // make amount a float
-  amount: integer("amount").notNull(),
-  unitType: integer("unit_type").references(() => ingredientMeasureUnits.id).notNull(),
-});
+export const recipeIngredients = createTable(
+  "recipe_items",
+  {
+    id: serial("id").primaryKey(),
+    recipeId: integer("recipe_id")
+      .references(() => recipes.id)
+      .notNull(),
+    ingredientId: integer("ingredient_id")
+      .references(() => ingredients.id)
+      .notNull(),
+    // make amount a float
+    amount: integer("amount").notNull(),
+    unitType: integer("unit_type")
+      .references(() => ingredientMeasureUnits.id)
+      .notNull(),
+  },
+  (table) => ({
+    uniqueCreator: unique().on(table.recipeId, table.ingredientId),
+  }),
+);
