@@ -1,0 +1,63 @@
+[
+  {
+    "name": "apple pie",
+    "description": "a delicious pie made with apples",
+    "created_by" : "user_1",
+    "private" : false
+  },
+  {
+    "name": "cherry pie",
+    "description": "a delicious pie made with cherries",
+    "created_by" : "user_2",
+    "private" : false
+  },
+  {
+    "name": "blueberry pie",
+    "description": "a delicious pie made with blueberries",
+    "created_by" : "user_3",
+    "private" : false
+  },
+  {
+    "name": "pumpkin pie",
+    "description": "a delicious pie made with pumpkins",
+    "created_by" : "user_4",
+    "private" : false
+  },
+  {
+    "name": "pecan pie",
+    "description": "a delicious pie made with pecans",
+    "created_by" : "user_5",
+    "private" : false
+  },
+  {
+    "name": "key lime pie",
+    "description": "a delicious pie made with key limes",
+    "created_by" : "user_6",
+    "private" : false
+  },
+  {
+    "name": "lemon meringue pie",
+    "description": "a delicious pie made with lemons",
+    "created_by" : "user_7",
+    "private" : false
+  },
+  {
+    "name": "strawberry rhubarb pie",
+    "description": "a delicious pie made with strawberries and rhubarb",
+    "created_by" : "user_8",
+    "private" : false
+  },
+  {
+    "name": "peach pie",
+    "description": "a delicious pie made with peaches",
+    "created_by" : "user_9",
+    "private" : false
+  },
+  {
+    "name": "blackberry pie",
+    "description": "a delicious pie made with blackberries",
+    "created_by" : "user_10",
+    "private" : false
+  }
+
+]
