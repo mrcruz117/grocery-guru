@@ -1,18 +1,14 @@
 // Example model schema from the Drizzle docs
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
-import { sql } from "drizzle-orm";
 import {
   boolean,
-  index,
   integer,
   pgTableCreator,
   serial,
-  timestamp,
   unique,
   varchar,
 } from "drizzle-orm/pg-core";
-import { number, string } from "zod";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -20,7 +16,7 @@ import { number, string } from "zod";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = pgTableCreator((name) => `g-g_${name}`);
+export const createTable = pgTableCreator((name) => `g_g_${name}`);
 
 export const recipes = createTable(
   "recipes",
