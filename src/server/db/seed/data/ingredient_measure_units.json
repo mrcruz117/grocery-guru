@@ -1,0 +1,18 @@
+[
+  {"unit": "tablespoon"},
+  {"unit": "teaspoon"},
+  {"unit": "cup"},
+  {"unit": "ounce"},
+  {"unit": "pound"},
+  {"unit": "piece"},
+  {"unit": "slice"},
+  {"unit": "whole"},
+  {"unit": "clove"},
+  {"unit": "head"},
+  {"unit": "stalk"},
+  {"unit": "bunch"},
+  {"unit": "can"},
+  {"unit": "jar"},
+  {"unit": "package"},
+  {"unit": "bottle"}
+]
