@@ -15,18 +15,22 @@ import dotenv from "dotenv";
 dotenv.config();
 
 async function seedIngredients(db: DbType) {
+  console.log("Seeding Ingredients...");
   await db.insert(ingredients).values(ingredientData);
 }
 
 async function seedUnits(db: DbType) {
+  console.log("Seeding Units...");
   await db.insert(ingredientMeasureUnits).values(unitData);
 }
 
 async function seedRecipes(db: DbType) {
+  console.log("Seeding Recipes...");
   await db.insert(recipes).values(recipeData);
 }
 
 async function seedRecipeIngredients(db: DbType) {
+  console.log("Seeding Recipe Ingredients...");
   await db.insert(recipeIngredients).values(recipeItems);
 }
 
@@ -34,8 +38,6 @@ async function resetTable(db: DbType, table: Table) {
   console.log(`Resetting table ${getTableName(table)}`);
 
   const query = `TRUNCATE TABLE ${getTableName(table)} RESTART IDENTITY CASCADE`;
-  console.log("query:", query);
-
   return db.execute(sql.raw(query));
 }
 
@@ -49,6 +51,11 @@ async function seed() {
     // await db.delete(table); // clear tables without truncating / resetting ids
     await resetTable(db, table);
   }
+
+  await seedIngredients(db);
+  await seedUnits(db);
+  await seedRecipes(db);
+  await seedRecipeIngredients(db);
 }
 
 await seed().catch(console.error);
